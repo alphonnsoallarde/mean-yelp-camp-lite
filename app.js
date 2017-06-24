@@ -10,8 +10,11 @@ var express                 = require("express"),
     seedDB                  = require("./seeds");
 
 //seedDB(); // seed the database
+
+var userDB = "admin",
+    passDB = "password123";
     
-mongoose.connect("mongodb://localhost/yelp_camp_v6", function() {
+mongoose.connect(`mongodb://${userDB}:${passDB}@ds137882.mlab.com:37882/yelpcamplite`, function() {
     console.log("Database connected successfully!");
 });
 app.use(bodyParser.urlencoded({extended: true}));
