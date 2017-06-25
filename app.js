@@ -14,9 +14,14 @@ var express                 = require("express"),
 var userDB = "admin",
     passDB = "password123";
     
-mongoose.connect(`mongodb://${userDB}:${passDB}@ds137882.mlab.com:37882/yelpcamplite`, function() {
-    console.log("Database connected successfully!");
+mongoose.connect(process.env.DATABASEURL, function() {
+   console.log("Connected to " + process.env.DATABASEURL);
 });
+    
+mongoose.connect(`mongodb://${userDB}:${passDB}@ds137882.mlab.com:37882/yelpcamplite`, function() {
+    console.log("MLab DB connected successfully!");
+}); //mongodb://localhost/yelp_camp_v6
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
