@@ -11,16 +11,18 @@ var express                 = require("express"),
 
 //seedDB(); // seed the database
 
-var userDB = "admin",
-    passDB = "password123";
-    
-mongoose.connect(process.env.DATABASEURL, function() {
+var dbURL = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v6";
+
+mongoose.connect(dbURL, function() {
    console.log("Connected to " + process.env.DATABASEURL);
 });
+
+// var userDB = "admin",
+//     passDB = "password123";
     
-mongoose.connect(`mongodb://${userDB}:${passDB}@ds137882.mlab.com:37882/yelpcamplite`, function() {
-    console.log("MLab DB connected successfully!");
-}); //mongodb://localhost/yelp_camp_v6
+// mongoose.connect(`mongodb://${userDB}:${passDB}@ds137882.mlab.com:37882/yelpcamplite`, function() {
+//     console.log("MLab DB connected successfully!");
+// }); //mongodb://localhost/yelp_camp_v6
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
